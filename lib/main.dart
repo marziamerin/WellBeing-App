@@ -18,12 +18,24 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.deepPurpleAccent[200] ,
       ),
       body: Center(
-        child: Image.asset('assets/flower-unsplash.jpg'),
+        child: ElevatedButton (
+          onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.deepPurple, // Background color
+            ),
+            child: const Text(
+              'Get Started',
+              style: TextStyle(fontSize: 25),
+            ),
+
         ),
-      );
-
-
-
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Text('+'),
+          backgroundColor: Colors.blueAccent[400]
+        ),
+    );
   }
 }
 
