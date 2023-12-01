@@ -18,16 +18,11 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.deepPurpleAccent[200] ,
       ),
       body: Center(
-        child: ElevatedButton (
-          onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.deepPurple, // Background color
-            ),
-            child: const Text(
-              'Get Started',
-              style: TextStyle(fontSize: 25),
-            ),
-
+        child: IconButton(
+          onPressed: () {
+            print ('You clicked me');
+          },
+          icon: Icon(Icons.facebook),
         ),
       ),
       floatingActionButton: FloatingActionButton(
