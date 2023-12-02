@@ -17,28 +17,29 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.deepPurpleAccent[200] ,
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Hi Merin'),
+          Text('HI Merin'),
           ElevatedButton(onPressed: () {
-            print('you clicked me');
-            },
+            print('Tap');
+          },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.deepPurpleAccent ,
+              backgroundColor: Colors.deepPurple[200],
             ),
-              child: Text('Click'),
-           ),
+              child: Text('Tap Me'),
+          ),
           Container(
-            child: Text('Submit'),
-            padding: EdgeInsets.all(50.0),
+            child: Text('This is nice'),
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
             decoration: BoxDecoration(
-              color: Colors.green[200],
+              color: Colors.deepPurple,
             ),
           )
+
         ],
-      ),
+      ) ,
       );
   }
 }
