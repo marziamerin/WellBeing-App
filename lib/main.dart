@@ -17,30 +17,45 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.deepPurpleAccent[200] ,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Row(
         children: [
-          Text('HI Merin'),
-          ElevatedButton(onPressed: () {
-            print('Tap');
-          },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.deepPurple[200],
-            ),
-              child: Text('Tap Me'),
+          Expanded(
+            flex: 2,
+            child: Container(
+                  child: Text('One',textAlign: TextAlign.center, style: TextStyle(
+                      fontSize: 20 ),),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple[300],
+                  ),
+                ),
           ),
-          Container(
-            child: Text('This is nice'),
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-            decoration: BoxDecoration(
-              color: Colors.deepPurple,
+          Expanded(
+            flex: 2,
+            child: Container(
+              child: Text('Two', textAlign: TextAlign.center, style: TextStyle(
+                  fontSize: 20 ),),
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+              decoration: BoxDecoration(
+                color: Colors.deepPurple[200],
+              ),
             ),
-          )
-
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              child: Text('Three',textAlign: TextAlign.center, style: TextStyle(
+                fontSize: 20 ),),
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+              decoration: BoxDecoration(
+                color: Colors.deepPurple[100],
+              ),
+            ),
+          ) ,
         ],
       ) ,
-      );
+
+    ) ;
   }
 }
 
