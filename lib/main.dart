@@ -17,20 +17,29 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.deepPurpleAccent[200] ,
       ),
-      body: Center(
-        child: IconButton(
-          onPressed: () {
-            print ('You clicked me');
-          },
-          icon: Icon(Icons.facebook),
-        ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text('Hi Merin'),
+          ElevatedButton(onPressed: () {
+            print('you clicked me');
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.deepPurpleAccent ,
+            ),
+              child: Text('Click'),
+           ),
+          Container(
+            child: Text('Submit'),
+            padding: EdgeInsets.all(50.0),
+            decoration: BoxDecoration(
+              color: Colors.green[200],
+            ),
+          )
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Text('+'),
-          backgroundColor: Colors.blueAccent[400]
-        ),
-    );
+      );
   }
 }
 
