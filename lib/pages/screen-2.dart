@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class IntroScreen2 extends StatelessWidget {
   const IntroScreen2({super.key});
