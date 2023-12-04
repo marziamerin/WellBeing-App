@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:wellbeing_app/pages/opening.dart';
+import 'package:wellbeing_app/pages/screen-1.dart';
+import 'package:wellbeing_app/pages/screen-2.dart';
+import 'package:wellbeing_app/pages/screen-3.dart';
 
 class Introductionary extends StatefulWidget {
   const Introductionary({super.key});
@@ -15,29 +19,10 @@ class _IntroductionaryState extends State<Introductionary> {
         children: [
           PageView(
             children: [
-              Container(
-                color: Colors.deepPurple[400],
-              ),
-              Container(
-                color: Colors.purple[100],
-              ),
-              Container(
-                color: Colors.indigo[500],
-              ),
-              Container(
-               decoration: BoxDecoration(
-                 image: DecorationImage(image: AssetImage('assets/flower-unsplash.jpg'),
-                 fit: BoxFit.cover),),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Welcome to'),
-                    Text('WellBeing',)
-                  ],
-                )
-
-              )
+              IntroScreen1() ,
+              IntroScreen2() ,
+              IntroScreen3() ,
+              Opening() ,
             ],
           )
         ],
