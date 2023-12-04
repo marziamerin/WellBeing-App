@@ -4,7 +4,7 @@ import 'package:wellbeing_app/pages/opening.dart';
 import 'package:wellbeing_app/pages/screen-1.dart';
 import 'package:wellbeing_app/pages/screen-2.dart';
 import 'package:wellbeing_app/pages/screen-3.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 class Introductionary extends StatefulWidget {
   const Introductionary({super.key});

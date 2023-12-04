@@ -13,7 +13,6 @@ class Opening extends StatelessWidget {
 
 
       ),
-
     );
   }
 }
