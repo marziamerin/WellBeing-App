@@ -6,20 +6,33 @@ class IntroScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.deepPurple[400],
-     child: Column(
-       mainAxisAlignment: MainAxisAlignment.center,
-       children: [
-         Text('Take a deep breath',
-           style: TextStyle(
-               fontWeight: FontWeight.bold,
-               fontSize: 20, letterSpacing: 1.0,
-               fontFamily: 'PlayfairDisplay'),
-               textAlign: TextAlign.end,
-         ),
-         Image.asset('assets/yoga-svgrepo-com.png', height: 200, width: 160,),
+      color: Colors.white,
+     child: SafeArea(
+       child: Column(
+         mainAxisAlignment: MainAxisAlignment.center,
+         children: [
+           Container(
+             alignment: Alignment(0, 0.59),
+             child: Text('Take a deep breath and \n    Calm your mind' ,
+               style: TextStyle(
+                 color: Colors.deepPurple[400],
+                 shadows: [
+                   Shadow(
+                     color: Colors.black26,
+                     blurRadius: 2.0,
+                     offset: Offset(2.0, 2.0),
+                   ),
+                 ],
+                   fontWeight: FontWeight.bold,
+                   fontSize: 20, letterSpacing: 1.0,
+                   fontFamily: 'PlayfairDisplay', ),
+                   textAlign: TextAlign.center ,
+             ),
+           ),
+           Image.asset('assets/take a deep breath.jpg', height: 550, width: 250,),
 
-       ],
+         ],
+       ),
      )
 
     );

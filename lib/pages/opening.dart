@@ -20,16 +20,32 @@ class Opening extends StatelessWidget {
                   Container(
                   child: Text('wellcome to',
                     style: TextStyle(
+                        shadows: [
+                          Shadow(
+                            color: Colors.black12,
+                            blurRadius: 2.0,
+                            offset: Offset(2.0, 2.0),
+                          ),
+                        ],
+                      color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 19, letterSpacing: 1.0,
+                        fontSize: 22, letterSpacing: 1.0,
                         fontFamily: 'PlayfairDisplay'),
                   ),
                 ),
                   Container(
                     child: Text('WellBeing',
                       style: TextStyle(
+                        color: Colors.white,
+                          shadows: [
+                              Shadow(
+                                color: Colors.black38,
+                                blurRadius: 2.0,
+                                offset: Offset(2.0, 2.0),
+                              ),
+                          ] ,
                           fontWeight: FontWeight.bold,
-                          fontSize: 30, letterSpacing: 1.0,
+                          fontSize: 34, letterSpacing: 1.0,
                           fontFamily: 'PlayfairDisplay'),
                     ),
                   ),

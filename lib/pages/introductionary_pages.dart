@@ -3,7 +3,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wellbeing_app/pages/opening.dart';
 import 'package:wellbeing_app/pages/screen-1.dart';
 import 'package:wellbeing_app/pages/screen-2.dart';
-import 'package:wellbeing_app/pages/screen-3.dart';
 
 
 class Introductionary extends StatefulWidget {
@@ -15,6 +14,7 @@ class Introductionary extends StatefulWidget {
 
 class _IntroductionaryState extends State<Introductionary> {
   PageController _controller = PageController() ;
+  bool isLastPage = false ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +22,23 @@ class _IntroductionaryState extends State<Introductionary> {
         children: [
           PageView(
             controller: _controller,
+            onPageChanged: (index) {
+              setState(() => isLastPage = index == 2 );
+            },
             children: [
               IntroScreen1() ,
               IntroScreen2() ,
-              IntroScreen3() ,
               Opening() ,
             ],  ),
           Container (
             alignment: Alignment(0, 0.92),
-            child: SmoothPageIndicator(controller: _controller, count: 4 )
+            child: SmoothPageIndicator(controller: _controller, count: 3 ,
+              effect: ScaleEffect(
+                spacing: 10 ,
+                dotColor: Colors.black12 ,
+                activeDotColor: Colors.deepPurpleAccent ,
+              ),
+            )
           )
 
         ],
