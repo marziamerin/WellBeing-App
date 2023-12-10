@@ -39,6 +39,8 @@ dependencies:
   smooth_page_indicator: ^1.0.0
   firebase_auth: ^4.6.2
 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
