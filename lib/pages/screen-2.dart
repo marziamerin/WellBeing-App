@@ -14,7 +14,7 @@ class IntroScreen2 extends StatelessWidget {
           children: [
             Container(
               alignment: Alignment(0, 0.59),
-              child: Text ('Set yourself free\n by finding your true potential',
+              child: Text ('Set yourself free and \n Create the best version of YOU',
                 style: TextStyle(
                     shadows: [
                       Shadow(

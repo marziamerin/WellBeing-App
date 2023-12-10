@@ -14,7 +14,6 @@ class Introductionary extends StatefulWidget {
 
 class _IntroductionaryState extends State<Introductionary> {
   PageController _controller = PageController() ;
-  bool isLastPage = false ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +21,6 @@ class _IntroductionaryState extends State<Introductionary> {
         children: [
           PageView(
             controller: _controller,
-            onPageChanged: (index) {
-              setState(() => isLastPage = index == 2 );
-            },
             children: [
               IntroScreen1() ,
               IntroScreen2() ,
@@ -38,9 +34,8 @@ class _IntroductionaryState extends State<Introductionary> {
                 dotColor: Colors.black12 ,
                 activeDotColor: Colors.deepPurpleAccent ,
               ),
-            )
-          )
-
+            ),
+          ),
         ],
       ),
     );

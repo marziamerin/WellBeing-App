@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "326607815198",
+    "project_id": "wellbeing-for-mental-hea-98c89",
+    "storage_bucket": "wellbeing-for-mental-hea-98c89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326607815198:android:f27ced8d1de37c0d4e640f",
+        "android_client_info": {
+          "package_name": "com.marziamerin.wellbeing_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz_AbqqlxjXQcjWbLeUHvXB4brbPfDLNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

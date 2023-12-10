@@ -62,7 +62,8 @@ class Opening extends StatelessWidget {
                   animationDuration: const Duration(milliseconds: 1),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-                    child: Text('Get Started' , textAlign: TextAlign.center,))
+                    child: Text('Get Started' , textAlign: TextAlign.center,)
+            )
 
           ),
         ],
