@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:wellbeing_app/wrapper.dart';
 
 class Opening extends StatelessWidget {
   const Opening({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Size size= MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage('assets/flower-unsplash.jpg'),
@@ -56,13 +58,22 @@ class Opening extends StatelessWidget {
           Container(
             alignment: Alignment(0, 0.66),
             child: ElevatedButton(onPressed: () {
-
-                },style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pink[100],
-                  animationDuration: const Duration(milliseconds: 1),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              Navigator.of(context)
+                  .push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => Wrapper(),
                 ),
-                    child: Text('Get Started' , textAlign: TextAlign.center,)
+              );
+            },style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pink[100],
+                  fixedSize: const Size(200, 50) ,
+                  animationDuration: const Duration(milliseconds: 1),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                ),
+                    child: Text('Get Started' , textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20
+                    ))
             )
 
           ),
