@@ -73,7 +73,7 @@ class Opening extends StatelessWidget {
                     child: Text('Get Started' , textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20
-                    ))
+                    )) ,
             )
 
           ),
