@@ -41,6 +41,8 @@ dependencies:
   firebase_auth: ^4.15.3
   cloud_firestore: ^4.13.5
   firebase_storage: ^11.5.6
+  gradients: ^0.1.1+2
+  curved_navigation_bar: ^1.0.3
 
 
 
