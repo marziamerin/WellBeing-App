@@ -53,15 +53,15 @@ class _SignUpState extends State<SignUp> {
                     TextFormField(
                       decoration: InputDecoration(
                           hintText: '  Username',
-                          fillColor: Colors.black12 ,
+                          fillColor: Colors.white ,
                           filled: true ,
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                            borderSide: BorderSide(color: Colors.black12, width: 2.0),
+                            borderSide: BorderSide(color: Colors.white, width: 2.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                            borderSide: BorderSide(color: Colors.indigo, width: 2.0),
+                            borderSide: BorderSide(color: Colors.pink, width: 2.0),
                           )
                       ),
                       onChanged: (val) {
@@ -76,15 +76,15 @@ class _SignUpState extends State<SignUp> {
                     TextFormField(
                       decoration: InputDecoration(
                           hintText: ' Email',
-                          fillColor: Colors.black12 ,
+                          fillColor: Colors.white ,
                           filled: true ,
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                            borderSide: BorderSide(color: Colors.black12, width: 2.0),
+                            borderSide: BorderSide(color: Colors.white, width: 2.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                            borderSide: BorderSide(color: Colors.indigo, width: 2.0),
+                            borderSide: BorderSide(color: Colors.pink, width: 2.0),
                           )
                       ),
                       onChanged: (val) {
@@ -100,15 +100,15 @@ class _SignUpState extends State<SignUp> {
                     TextFormField(
                       decoration: InputDecoration(
                         hintText: '  Password',
-                        fillColor: Colors.black12 ,
+                        fillColor: Colors.white,
                         filled: true ,
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.black12, width: 2.0),
+                          borderSide: BorderSide(color: Colors.white, width: 2.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide(color: Colors.indigo, width: 2.0),
+                          borderSide: BorderSide(color: Colors.pink, width: 2.0),
                         ),
                       ),
                       obscureText: true,
@@ -130,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                           fontWeight: FontWeight.bold,
                         ),),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo[500],
+                        backgroundColor: Colors.black,
                         fixedSize: const Size(200, 50) ,
                         animationDuration: const Duration(milliseconds: 1),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -143,7 +143,7 @@ class _SignUpState extends State<SignUp> {
                       children: [
                         Text("Already have an account?",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18, fontWeight: FontWeight.bold ,
                           ),),
                         SizedBox( width: 5,),
                         GestureDetector(
@@ -152,7 +152,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           child: Text('Log In',
                             style: TextStyle(
-                              color: Colors.indigo[500],
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),),
