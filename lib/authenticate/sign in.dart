@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:wellbeing_app/authenticate/sign%20up.dart';
+import 'package:wellbeing_app/authenticate/sign up.dart';
 import 'package:wellbeing_app/home/home.dart';
 import 'package:wellbeing_app/services/auth.dart';
 
@@ -25,6 +25,7 @@ class _SignInState extends State<SignIn> {
         child: Form(
           child: SafeArea(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   child: Image.asset('assets/sign in.jpg',
@@ -40,27 +41,49 @@ class _SignInState extends State<SignIn> {
                      fontFamily: 'PlayfairDisplay' ,
                    ),),
                 SizedBox(
-                  height: 40.0,
+                  height: 30.0,
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 18.0,
                 ) ,
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: '  Email',
-                    fillColor: Colors.white70 ,
+                    fillColor: Colors.black12 ,
+                    filled: true ,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderSide: BorderSide(color: Colors.black12, width: 2.0),
+                        ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        borderSide: BorderSide(color: Colors.deepPurple, width: 2.0),
+                      )
                   ),
                   onChanged: (val) {
                     setState(() => email = val);
                   },
                 ),
                 SizedBox(
-                  height: 40.0,
+                  height: 20.0,
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 18.0,
                 ) ,
                 TextFormField(
+                  decoration: InputDecoration(
+                    hintText: '  Password',
+                    fillColor: Colors.black12 ,
+                    filled: true ,
+                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        borderSide: BorderSide(color: Colors.black12, width: 2.0),
+                      ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(color: Colors.deepPurple, width: 2.0),
+                    ),
+                  ),
                   obscureText: true,
                   onChanged: (val) {
                     setState(() => password = val);
@@ -88,9 +111,27 @@ class _SignInState extends State<SignIn> {
                 SizedBox(
                   height: 40.0,
                 ),
-                SizedBox(
-                  height: 40.0,
-                  child: Text("Don't have an account?"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                     Text("Don't have an account?",
+                     style: TextStyle(
+                       fontSize: 18,
+                     ),),
+                    SizedBox( width: 5,),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                      },
+                      child: Text('Sign Up',
+                      style: TextStyle(
+                        color: Colors.deepPurple[400],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),),
+                    )
+
+                  ],
                 )
               ],
             ),
