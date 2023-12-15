@@ -1,19 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wellbeing_app/authenticate/sign%20in.dart';
 import 'package:wellbeing_app/home/home.dart';
 import 'package:gradients/gradients.dart';
 
-
 class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+  final VoidCallback showSignIn;
+  const SignUp ({Key? key, required this.showSignIn}): super (key: key);
   @override
   State<SignUp> createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  String username ='';
-  String password ='';
-  String email ='';
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmpasswordController = TextEditingController();
+  Future signUp() async{
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim() ,
+        password: _passwordController.text.trim(),
+    );
+  }
+  @override
+  void dispose (){
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmpasswordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +65,9 @@ class _SignUpState extends State<SignUp> {
                       height: 14.0,
                     ) ,
                     TextFormField(
+                        controller: _emailController,
                       decoration: InputDecoration(
-                          hintText: '  Username',
+                          hintText: '  Email',
                           fillColor: Colors.white ,
                           filled: true ,
                           enabledBorder: OutlineInputBorder(
@@ -64,9 +79,6 @@ class _SignUpState extends State<SignUp> {
                             borderSide: BorderSide(color: Colors.pink, width: 2.0),
                           )
                       ),
-                      onChanged: (val) {
-                        setState(() => username = val);
-                      },
                     ),
                     SizedBox(
                       height: 18.0),
@@ -74,8 +86,10 @@ class _SignUpState extends State<SignUp> {
                       height: 14.0,
                     ) ,
                     TextFormField(
-                      decoration: InputDecoration(
-                          hintText: ' Email',
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: ' Password',
                           fillColor: Colors.white ,
                           filled: true ,
                           enabledBorder: OutlineInputBorder(
@@ -87,9 +101,6 @@ class _SignUpState extends State<SignUp> {
                             borderSide: BorderSide(color: Colors.pink, width: 2.0),
                           )
                       ),
-                      onChanged: (val) {
-                        setState(() => email = val);
-                      },
                     ),
                     SizedBox(
                       height: 18.0,
@@ -98,8 +109,10 @@ class _SignUpState extends State<SignUp> {
                       height: 14.0,
                     ) ,
                     TextFormField(
+                      controller: _confirmpasswordController,
+                      obscureText: true,
                       decoration: InputDecoration(
-                        hintText: '  Password',
+                        hintText: '  Confirm Password',
                         fillColor: Colors.white,
                         filled: true ,
                         enabledBorder: OutlineInputBorder(
@@ -111,17 +124,11 @@ class _SignUpState extends State<SignUp> {
                           borderSide: BorderSide(color: Colors.pink, width: 2.0),
                         ),
                       ),
-                      obscureText: true,
-                      onChanged: (val) {
-                        setState(() => password = val);
-                      },
                     ),
                     SizedBox(
                       height: 40.0,
                     ),
                     ElevatedButton(onPressed: () async {
-                      print(username);
-                      print(password);
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
                     },
                       child: Text('Sign Up',
@@ -147,9 +154,7 @@ class _SignUpState extends State<SignUp> {
                           ),),
                         SizedBox( width: 5,),
                         GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
-                          },
+                          onTap:widget.showSignIn,
                           child: Text('Log In',
                             style: TextStyle(
                               color: Colors.white,

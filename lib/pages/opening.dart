@@ -10,7 +10,8 @@ class Opening extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage('assets/flower-unsplash.jpg'),
-            fit: BoxFit.cover),),
+            fit: BoxFit.cover),
+      ),
       child: Stack (
         children: [
           Container(

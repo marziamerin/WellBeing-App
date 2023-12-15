@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:wellbeing_app/authenticate/sign up.dart';
-import 'package:wellbeing_app/home/home.dart';
-import 'package:wellbeing_app/services/auth.dart';
-
+import 'package:wellbeing_app/wrapper.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+  final VoidCallback showSignUp;
+  const SignIn({Key? key, required this.showSignUp}): super (key: key);
 
   @override
   State<SignIn> createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  Future signIn() async{
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text.trim() ,
+      password: _passwordController.text.trim()
+    );
+  }
+  @override
+  void dispose (){
+    _emailController.dispose();
+    _passwordController.dispose();
+      super.dispose();
+  }
 
-  String email ='';
-  String password ='';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +59,7 @@ class _SignInState extends State<SignIn> {
                     height: 18.0,
                   ) ,
                   TextFormField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                       hintText: '  Email',
                       fillColor: Colors.black12 ,
@@ -61,9 +73,6 @@ class _SignInState extends State<SignIn> {
                           borderSide: BorderSide(color: Colors.deepPurple, width: 2.0),
                         )
                     ),
-                    onChanged: (val) {
-                      setState(() => email = val);
-                    },
                   ),
                   SizedBox(
                     height: 20.0,
@@ -72,6 +81,7 @@ class _SignInState extends State<SignIn> {
                     height: 18.0,
                   ) ,
                   TextFormField(
+                    controller: _passwordController,
                     decoration: InputDecoration(
                       hintText: '  Password',
                       fillColor: Colors.black12 ,
@@ -86,17 +96,12 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     obscureText: true,
-                    onChanged: (val) {
-                      setState(() => password = val);
-                    },
                   ),
                   SizedBox(
                     height: 40.0,
                   ),
-                  ElevatedButton(onPressed: () async {
-                    print(email);
-                    print(password);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                  ElevatedButton(onPressed: () async { signIn ();
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Wrapper()));
                   },
                     child: Text('Log In',
                       style: TextStyle(
@@ -121,9 +126,7 @@ class _SignInState extends State<SignIn> {
                        ),),
                       SizedBox( width: 5,),
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-                        },
+                        onTap: widget.showSignUp,
                         child: Text('Sign Up',
                         style: TextStyle(
                           color: Colors.deepPurple[400],
