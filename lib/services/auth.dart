@@ -1,30 +1,33 @@
-import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:wellbeing_app/authenticate/sign%20in.dart';
-import 'package:wellbeing_app/authenticate/sign up.dart';
 
-
-class AuthService extends StatefulWidget {
-  const AuthService({super.key});
-
-  @override
-  State<AuthService> createState() => _AuthServiceState();
-}
-
-class _AuthServiceState extends State<AuthService> {
-  bool showSignIn =true ;
-  void toggleScreens(){
-    setState(() {
-      showSignIn =!showSignIn ;
-    });
-  }
-  @override
-  Widget build(BuildContext context) {
-    if (showSignIn) {
-      return SignIn(showSignUp: toggleScreens);
+class  FirebaseAuthService {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  Future<User?> signUpWithEmailAndPassword(String email , String password)
+  async{
+    try{
+      UserCredential credential = await _auth.createUserWithEmailAndPassword(
+          email:email ,  password: password);
+      return credential.user;
     }
-    else {
-      return SignUp( showSignIn: toggleScreens );
-    };
+    catch (e){
+    print('Some error occured');
+    }
+    return null;
   }
+  Future<User?> signInWithEmailAndPassword(String email , String password , String confirmpassword)
+  async{
+    try{
+      UserCredential credential = await _auth.signInWithEmailAndPassword(
+          email:email ,  password: password , );
+      return credential.user;
+    }
+    catch (e){
+      print('Some error occured');
+    }
+    return null;
+  }
+
+
 }
+

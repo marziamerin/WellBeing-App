@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:wellbeing_app/authenticate/sign up.dart';
 import 'package:wellbeing_app/wrapper.dart';
+import 'package:wellbeing_app/services/auth.dart';
 
 class SignIn extends StatefulWidget {
   final VoidCallback showSignUp;
@@ -12,8 +12,9 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final FirebaseAuthService _auth = FirebaseAuthService();
+ TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   Future signIn() async{
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: _emailController.text.trim() ,

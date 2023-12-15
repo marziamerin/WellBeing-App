@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:wellbeing_app/authenticate/sign%20in.dart';
+import 'package:wellbeing_app/services/auth.dart';
 import 'package:wellbeing_app/home/home.dart';
 import 'package:gradients/gradients.dart';
 
@@ -12,14 +12,35 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmpasswordController = TextEditingController();
-  Future signUp() async{
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim() ,
-        password: _passwordController.text.trim(),
-    );
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmpasswordController = TextEditingController();
+  void signUp() async{
+    String email = _emailController.text.trim() ;
+    String password = _passwordController.text.trim();
+    String confirmpassword =  _confirmpasswordController.text.trim();
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password, confirmpassword);
+    if (user!= null){
+      print('User is successfully created') ;   }
+    else{
+     print('Some error happened');
+    }
+   if (passwordConfirmed()){
+     await FirebaseAuth.instance.createUserWithEmailAndPassword(
+         email: _emailController.text.trim()  ,
+         password: _passwordController.text.trim()
+     );
+   }
+  }
+  bool passwordConfirmed (){
+    if (_passwordController== _confirmpasswordController){
+      return true ;
+    }
+    else {
+      return false;
+    }
   }
   @override
   void dispose (){
