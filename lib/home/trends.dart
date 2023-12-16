@@ -17,7 +17,7 @@ class _TrendsState extends State<Trends> {
   ];
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30, bottom: 30, right: 30),
+      padding: const EdgeInsets.fromLTRB(40, 80, 40, 40),
       child: Container(
           child: LineChart(
             LineChartData(
@@ -50,7 +50,7 @@ class _TrendsState extends State<Trends> {
                       .values
                       .toList(),
                   isCurved: true,
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                   barWidth: 2.5,
                   belowBarData: BarAreaData(
                     show: true,

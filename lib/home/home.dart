@@ -23,8 +23,8 @@ class _HomeState extends State<Home> {
         items: [
           Icon(Icons.home , size: 30),
           Icon(Icons.psychology_alt ,size: 30),
-          Icon(Icons.diversity_1 , size: 30),
-          Icon(Icons.align_vertical_bottom_outlined , size: 30)
+          Icon(Icons.align_vertical_bottom_outlined , size: 30),
+          Icon(Icons.account_circle_rounded , size: 30)
         ],
         index : index,
         onTap: (selectedIndex){
