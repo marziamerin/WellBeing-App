@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
     Widget widget ;
     switch(index){
        case 1 :
-         widget = const MoodTracker();
+         widget = const Mood();
        break;
         case 2 :
           widget = const TherapyPage();
