@@ -44,6 +44,7 @@ dependencies:
   cloud_firestore: ^4.13.5
   firebase_storage: ^11.5.6
   gradients: ^0.1.1+2
+  scroll_snap_list: ^0.9.1
 
 
 
