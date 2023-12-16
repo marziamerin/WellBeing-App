@@ -46,6 +46,7 @@ dependencies:
   gradients: ^0.1.1+2
   scroll_snap_list: ^0.9.1
   firebase_database: ^10.3.8
+  fl_chart: ^0.65.0
 
 
 

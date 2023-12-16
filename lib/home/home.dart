@@ -3,7 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:wellbeing_app/home/dafault%20home.dart';
 import 'package:wellbeing_app/home/mood tracker.dart';
 import 'package:wellbeing_app/home/profile.dart';
-import 'package:wellbeing_app/home/therapy.dart';
+import 'package:wellbeing_app/home/trends.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
           Icon(Icons.home , size: 30),
           Icon(Icons.psychology_alt ,size: 30),
           Icon(Icons.diversity_1 , size: 30),
-          Icon(Icons.account_circle_rounded , size: 30)
+          Icon(Icons.align_vertical_bottom_outlined , size: 30)
         ],
         index : index,
         onTap: (selectedIndex){
@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
          widget = const Mood();
        break;
         case 2 :
-          widget = const TherapyPage();
+          widget = const Trends();
         break;
          case 3 :
            widget = const ProfilePage();
