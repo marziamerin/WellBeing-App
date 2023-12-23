@@ -13,41 +13,33 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final FirebaseAuthService _auth = FirebaseAuthService();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmpasswordController = TextEditingController();
-  void signUp() async{
-    String email = _emailController.text.trim() ;
-    String password = _passwordController.text.trim();
-    String confirmpassword =  _confirmpasswordController.text.trim();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmpasswordController = TextEditingController();
 
-    User? user = await _auth.signInWithEmailAndPassword(email, password, confirmpassword);
-    if (user!= null){
-      print('User is successfully created') ;   }
-    else{
-     print('Some error happened');
-    }
-   if (passwordConfirmed()){
-     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-         email: _emailController.text.trim()  ,
-         password: _passwordController.text.trim()
-     );
-   }
-  }
-  bool passwordConfirmed (){
-    if (_passwordController== _confirmpasswordController){
-      return true ;
-    }
-    else {
-      return false;
-    }
-  }
   @override
   void dispose (){
     _emailController.dispose();
     _passwordController.dispose();
     _confirmpasswordController.dispose();
     super.dispose();
+  }
+
+  Future signUp() async{
+    if (passwordConfirmed()){
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text.trim()  ,
+        password: _passwordController.text.trim(),
+      );
+    }
+  }
+  bool passwordConfirmed (){
+    if (_passwordController.text.trim()  == _confirmpasswordController.text.trim() ){
+      return true ;
+    }
+    else {
+      return false;
+    }
   }
   @override
   Widget build(BuildContext context) {

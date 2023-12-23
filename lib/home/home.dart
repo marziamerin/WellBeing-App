@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
        case 1 :
          widget = const Mood();
        break;
-        case 2 :
+        case 2 : 
           widget = const Trends();
         break;
          case 3 :

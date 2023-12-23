@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:wellbeing_app/wrapper.dart';
 import 'package:wellbeing_app/services/auth.dart';
 
+import 'Forgot password.dart';
+
 class SignIn extends StatefulWidget {
   final VoidCallback showSignUp;
   const SignIn({Key? key, required this.showSignUp}): super (key: key);
@@ -15,6 +17,7 @@ class _SignInState extends State<SignIn> {
   final FirebaseAuthService _auth = FirebaseAuthService();
  TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
   Future signIn() async{
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: _emailController.text.trim() ,
@@ -99,7 +102,30 @@ class _SignInState extends State<SignIn> {
                     obscureText: true,
                   ),
                   SizedBox(
-                    height: 40.0,
+                    height: 10.0,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+        Navigator.push(context, MaterialPageRoute(
+        builder: (context) =>Forgot()));
+                         },
+                          child: Text('Forgot Password',
+                            style: TextStyle(
+                              color: Colors.redAccent,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
                   ),
                   ElevatedButton(onPressed: () async { signIn ();
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Wrapper()));
