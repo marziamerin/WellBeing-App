@@ -55,7 +55,7 @@ List<Product> productList = [
                           itemCount: productList.length,
                           itemSize: 250,
                           onItemFocus: (index){} ,
-                      dynamicItemSize: true,)
+                         dynamicItemSize: true,)
                     ),
                     SizedBox(
                       height: 20.0,
@@ -126,7 +126,7 @@ List<Product> productList = [
     Product product = productList [index];
     return SizedBox(
       width: 250,
-      height: 350,
+      height: 340,
       child: Card(
         elevation: 12,
         child: ClipRRect(
