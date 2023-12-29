@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class Mood extends StatefulWidget {
-  const Mood({super.key});
+  const Mood({Key? key});
 
   @override
   State<Mood> createState() => _MoodState();
@@ -11,6 +12,11 @@ class Mood extends StatefulWidget {
 class _MoodState extends State<Mood> {
   List<int> list = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   final _formKey = GlobalKey<FormState>();
+  final databaseReference = FirebaseDatabase.instance.reference();
+
+  int? selectedMood;
+  String? description;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +29,14 @@ class _MoodState extends State<Mood> {
             child: Column(
               children: [
                 const SizedBox(height: 50.0),
-                const Text('How are you feeling today ?',
-                    style: TextStyle( color: Colors.black ,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    )),
+                const Text(
+                  'How are you feeling today ?',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(height: 30.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,42 +48,50 @@ class _MoodState extends State<Mood> {
                         const Text(
                           'Rate your mood',
                           style: TextStyle(
-                            color: Colors.white ,fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                             fontSize: 16.0,
                           ),
                         ),
                         const SizedBox(height: 5.0),
                         DropdownButtonFormField(
-                            items: list.map<DropdownMenuItem<int>>((int value) {
-                              return DropdownMenuItem<int>(
-                                value: value,
-                                child: Text('$value'),
-                              );
-                            }).toList(),
-                            validator: (value) {
-                              if (value == null) {
-                                return 'Please rate your mood';
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              hintText: "select your mood", fillColor: Colors.white, filled: true,
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(color: Colors.grey),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(color: Colors.grey),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(color: Colors.red),
-                              ),
+                          items: list.map<DropdownMenuItem<int>>((int value) {
+                            return DropdownMenuItem<int>(
+                              value: value,
+                              child: Text('$value'),
+                            );
+                          }).toList(),
+                          validator: (value) {
+                            if (value == null) {
+                              return 'Please rate your mood';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            hintText: "select your mood",
+                            fillColor: Colors.white,
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.grey),
                             ),
-                            onChanged: ((value) {})),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.grey),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.red),
+                            ),
+                          ),
+                          onChanged: ((value) {
+                            setState(() {
+                              selectedMood = value;
+                            });
+                          }),
+                        ),
                       ],
                     ),
                   ],
@@ -87,7 +104,8 @@ class _MoodState extends State<Mood> {
                       'Describing how you feel',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16.0,fontWeight: FontWeight.bold ,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 5.0),
@@ -103,7 +121,8 @@ class _MoodState extends State<Mood> {
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 20),
                         hintText: "describe your feeling",
-                        fillColor: Colors.white, filled: true,
+                        fillColor: Colors.white,
+                        filled: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(color: Colors.grey),
@@ -120,6 +139,11 @@ class _MoodState extends State<Mood> {
                       minLines: 6,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
+                      onChanged: (value) {
+                        setState(() {
+                          description = value;
+                        });
+                      },
                     ),
                   ],
                 ),
@@ -130,6 +154,7 @@ class _MoodState extends State<Mood> {
                   child: TextButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        saveToDatabase();
                       }
                     },
                     style: ButtonStyle(
@@ -153,5 +178,31 @@ class _MoodState extends State<Mood> {
       ),
     );
   }
-}
 
+  void saveToDatabase() {
+    // Generate a unique key for each entry
+    String? entryKey = databaseReference.child('My_DB').push().key;
+
+    // Save data to Firebase
+    databaseReference.child('My_DB').child(entryKey!).set({
+      'mood': selectedMood,
+      'description': description,
+    }).then((_) {
+      // Successfully saved
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Data saved to Firebase'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }).catchError((error) {
+      // Handle error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error saving data to Firebase: $error'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    });
+  }
+}
