@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
 class OptionsCard extends StatelessWidget {
-  const OptionsCard({Key? key , required this.option}): super(key: key);
+  const OptionsCard({Key? key , required this.option , required this.color}): super(key: key);
   final String option;
 
+final Color color ;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: GestureDetector(
-        onTap: (){},
+        onTap: (){
+          print('selected');
+        },
         child: Card(
-
+          color: color,
+          shadowColor: Colors.black38,
           child: ListTile(
             title: Text(
               option,

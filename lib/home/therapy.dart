@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wellbeing_app/home/q%20and%20a/constant.dart';
 import 'package:wellbeing_app/home/q%20and%20a/nextbutton.dart';
 import 'package:wellbeing_app/home/q%20and%20a/question_model.dart';
 import 'package:wellbeing_app/home/q%20and%20a/therapy_questions.dart';
@@ -15,10 +16,10 @@ class _TherapyState extends State<Therapy> {
   List<Question> _questions = [
     Question(
         title: 'Have you been experiencing anxiety or stress lately?',
-        options: {'Yes': true , 'No': true}, id:'1') ,
+        options: {'Yes': true , 'No': false}, id:'1') ,
     Question(
         title: 'Over the past weeks,have you experienced \nfeeling down, depressed or hopeless?',
-        options: {'Not at all': true , 'Several days': true, 'Nearly everyday': true}, id: '2') ,
+        options: {'Not that much': false , 'Nearly everyday': true}, id: '2') ,
     Question(
         title: 'What made you think of therapy?',
         options: {'Feeling emense sadness': true ,
@@ -28,14 +29,27 @@ class _TherapyState extends State<Therapy> {
   ];
 
   int index =0;
+ bool isPressed = false ;
+
+
   void nextQuestion(){
     if (index == _questions.length -1){
       return;
     }
-    else setState(() {
+    else{if (isPressed){
+      setState(() {
       index++ ;
+      isPressed =false;
     });
   }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Please select an option'),
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.symmetric(vertical: 20.0),
+      ));}
+    }
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,6 +92,10 @@ class _TherapyState extends State<Therapy> {
                               ),
                               for (int i = 0; i< _questions[index].options.length; i++)
                                 OptionsCard(option: _questions[index].options.keys.toList()[i],
+                                color: isPressed? _questions[index].options.values.toList()[i]
+                                    == true?
+                                correct
+                                    : incorrect : neutral,
                                 ),
 
                               SizedBox( height: 15,),
