@@ -9,7 +9,7 @@ class Question {
     required this.id ,
     required this.title ,
     required this.options
-});
+  });
 
   @override
   String toString () {

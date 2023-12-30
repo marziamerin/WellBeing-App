@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wellbeing_app/home/q%20and%20a/question_model.dart';
+import 'package:wellbeing_app/home/q%20and%20a/therapy_questions.dart';
 
 class Therapy extends StatefulWidget {
   const Therapy({super.key});
@@ -8,6 +10,22 @@ class Therapy extends StatefulWidget {
 }
 
 class _TherapyState extends State<Therapy> {
+  List<Question> _questions = [
+    Question(
+        title: 'Have you been experiencing anxiety or stress lately?',
+        options: {'Yes': true , 'No': true}, id:'1') ,
+    Question(
+        title: 'Over the past weeks,have you experienced \nfeeling down, depressed or hopeless?',
+        options: {'Not at all': true , 'Several days': true, 'Nearly everyday': true}, id: '2') ,
+    Question(
+        title: 'What made you think of therapy?',
+        options: {'Feeling emense sadness': true ,
+                   'Having panic attacks': true ,
+                     'Lost of appetite' : true,
+                       'Having a hard time sleeping': true }, id: '3') ,
+  ];
+
+  int index =0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,18 +54,25 @@ class _TherapyState extends State<Therapy> {
                       elevation: 12,
                       child: ClipRRect(
                         borderRadius: const BorderRadius.all(Radius.circular(15)),
-                        child: Column(
-                          children: [
-                            Padding(padding: EdgeInsets.symmetric( horizontal: 30.0, vertical: 30.0)),
-                          ],
+                        child: Container(
+                            padding: EdgeInsets.symmetric( horizontal: 30.0, vertical: 30.0),
+                          child: Column(
+                            children: [
+                               TherapyQuestion(
+                                   question: _questions[index].title,
+                                   indexAction: index,
+                                   totalQuestions: _questions.length),
+                              const Divider(color: Colors.white,)
+                            ],
+                          ),
                         ),
                       ))
               ),
-        
-        
+
+
             ],
           ),
-        
+
         ),
       ),
     );
