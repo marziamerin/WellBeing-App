@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:wellbeing_app/home/q%20and%20a/nextbutton.dart';
 import 'package:wellbeing_app/home/q%20and%20a/question_model.dart';
 import 'package:wellbeing_app/home/q%20and%20a/therapy_questions.dart';
+import 'package:wellbeing_app/home/q and a/optionscard.dart';
 
 class Therapy extends StatefulWidget {
   const Therapy({super.key});
@@ -26,6 +28,14 @@ class _TherapyState extends State<Therapy> {
   ];
 
   int index =0;
+  void nextQuestion(){
+    if (index == _questions.length -1){
+      return;
+    }
+    else setState(() {
+      index++ ;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +49,9 @@ class _TherapyState extends State<Therapy> {
             children: [
               SizedBox(
                 height: 40,
-                child: Text('Help us match you with the right therapy !',
+                child: Text('Help us match you with the right Therapy!',
                   style: TextStyle(
-                    fontFamily: 'PlayfairDisplay' , fontSize: 16 , fontWeight: FontWeight.bold ,
+                    fontFamily: 'PlayfairDisplay' , fontSize: 15 , fontWeight: FontWeight.bold ,
                     color: Colors.white ,
                   ) ,),
               ),
@@ -49,11 +59,11 @@ class _TherapyState extends State<Therapy> {
                 height: 30
               ),
               SizedBox(
-                height: 450, width: 300,
+                height: 480, width: 300,
                   child: Card(
                       elevation: 12,
                       child: ClipRRect(
-                        borderRadius: const BorderRadius.all(Radius.circular(15)),
+                        borderRadius: BorderRadius.all(Radius.circular(25)),
                         child: Container(
                             padding: EdgeInsets.symmetric( horizontal: 30.0, vertical: 30.0),
                           child: Column(
@@ -62,7 +72,22 @@ class _TherapyState extends State<Therapy> {
                                    question: _questions[index].title,
                                    indexAction: index,
                                    totalQuestions: _questions.length),
-                              const Divider(color: Colors.white,)
+                              const Divider(color: Colors.white,) ,
+                              SizedBox(
+                                height: 20,
+                              ),
+                              for (int i = 0; i< _questions[index].options.length; i++)
+                                OptionsCard(option: _questions[index].options.keys.toList()[i],
+                                ),
+
+                              SizedBox( height: 15,),
+                              ElevatedButton(
+                                    onPressed: () {} ,
+                                child: NextButton(
+                                  nextQuestion: nextQuestion,
+                                ),
+                              ),
+
                             ],
                           ),
                         ),

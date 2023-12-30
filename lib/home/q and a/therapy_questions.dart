@@ -15,7 +15,7 @@ required this.totalQuestions}) : super(key: key);
       alignment: Alignment.center,
       child: Text('Question ${ indexAction + 1}/$totalQuestions: $question',
         style: const TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 14 , fontFamily: 'PlayfairDisplay',
+          fontWeight: FontWeight.bold, fontSize: 15 , fontFamily: 'PlayfairDisplay',
           color: Colors.black ,
         ),
       ),
