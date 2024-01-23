@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:wellbeing_app/home/product.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DefaultHome extends StatefulWidget {
   const DefaultHome({super.key});
@@ -10,6 +11,12 @@ class DefaultHome extends StatefulWidget {
 }
 
 class _DefaultHomeState extends State<DefaultHome> {
+  Future<void> _launchURL(String url) async{
+    final Uri uri = Uri(scheme:'https',host: url);
+    if (!await launchUrl(uri, mode: LaunchMode.inAppBrowserView,)) {
+        throw "Can not launch url" ;
+    }
+  }
 
 List<Product> productList = [
   Product('assets/meditate.jpg', 'Meditation'),
@@ -50,12 +57,17 @@ List<Product> productList = [
                     ),
                     SizedBox(
                       height: 350 ,
-                      child: ScrollSnapList(
-                          itemBuilder: _buildListItem,
-                          itemCount: productList.length,
-                          itemSize: 250,
-                          onItemFocus: (index){} ,
-                         dynamicItemSize: true,)
+                      child: GestureDetector(
+                        onTap: (){
+                          _launchURL("https://podcasts.apple.com/qa/podcast/breathe-people-calm-anxiety-and-tap-into-creativity/id1462452351");
+                        },
+                        child: ScrollSnapList(
+                            itemBuilder: _buildListItem,
+                            itemCount: productList.length,
+                            itemSize: 250,
+                            onItemFocus: (index){} ,
+                           dynamicItemSize: true,),
+                      )
                     ),
                     SizedBox(
                       height: 20.0,

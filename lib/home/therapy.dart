@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wellbeing_app/home/q%20and%20a/constant.dart';
 import 'package:wellbeing_app/home/q%20and%20a/nextbutton.dart';
 import 'package:wellbeing_app/home/q%20and%20a/question_model.dart';
+import 'package:wellbeing_app/home/q%20and%20a/result.dart';
 import 'package:wellbeing_app/home/q%20and%20a/therapy_questions.dart';
 import 'package:wellbeing_app/home/q and a/optionscard.dart';
 
@@ -34,7 +35,7 @@ class _TherapyState extends State<Therapy> {
 
   void nextQuestion(){
     if (index == _questions.length -1){
-      return;
+     showDialog(context: context, builder: (ctx)=> ResultBox()) ;
     }
     else{if (isPressed){
       setState(() {
@@ -49,6 +50,12 @@ class _TherapyState extends State<Therapy> {
         margin: EdgeInsets.symmetric(vertical: 20.0),
       ));}
     }
+    }
+
+    void changeColor () {
+    setState(() {
+      isPressed = true ;
+    });
     }
   @override
   Widget build(BuildContext context) {
@@ -96,6 +103,7 @@ class _TherapyState extends State<Therapy> {
                                     == true?
                                 correct
                                     : incorrect : neutral,
+                                  onTap: changeColor ,
                                 ),
 
                               SizedBox( height: 15,),
